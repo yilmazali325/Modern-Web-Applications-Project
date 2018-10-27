@@ -1,0 +1,19 @@
+<div>
+  <div>
+  <ace-editor #editor
+  [(text)]="data"
+  [mode]="'javascript'"
+  [options]="options"
+  [readOnly]="true"
+  [autoUpdateContent]="true"
+  style="min-height: 200px; width:100%; overflow: auto;"></ace-editor>
+
+
+  </div>
+  <div class="controls">
+    <input type="button" value="Backward" (click)="backward()" />
+    <input type="button" value="Play" (click)="play()" />
+    <input type="button" value="Stop" (click)="stop()" />
+    <input type="button" value="Forward" (click)="forward()" />
+  </div>
+</div>

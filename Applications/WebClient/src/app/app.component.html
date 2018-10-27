@@ -1,0 +1,66 @@
+<mat-toolbar class="header" color="theme">
+  <mat-toolbar-row>
+    <span class="logo">
+      <a [routerLink]="['']">
+        Computer Science - Application System
+      </a>
+    </span>
+    <span class="fill-remaining-space"></span>
+    <span class="user" *ngIf="user.name" color="accent">{{user.name}}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" [(disabled)]="!user.name" color="accent">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" [opened]="user.name" class="sidenav" fixedInViewport fixedTopGap="60">
+    <mat-nav-list class='nav-menu'>
+      <span>Exams</span>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['']">
+        <mat-icon color="accent">list</mat-icon>
+        Applications
+      </a>
+      <div *ngIf="(user)?.role === 'admin'">
+        <span>Questions</span>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['questions']">
+          <mat-icon color="accent">question_answer</mat-icon>
+          Questions
+        </a>
+        <a mat-list-item [routerLink]="['createQuestion']">
+          <mat-icon color="accent">note_add</mat-icon>
+          Create question
+        </a>
+        <span>Users</span>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/users']">
+          <mat-icon color="accent">supervisor_account</mat-icon>
+          Users
+        </a>
+        <a mat-list-item [routerLink]="['createUser']">
+          <mat-icon color="accent">person_add</mat-icon>
+          Add user
+        </a>
+      </div>
+      <span>Exam Invitations</span>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/sendInvitation']">
+        <mat-icon color="accent">receipt</mat-icon>
+        Send Invitation
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>

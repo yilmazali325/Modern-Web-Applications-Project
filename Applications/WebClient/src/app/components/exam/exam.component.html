@@ -1,0 +1,14 @@
+<div>
+    <p>{{question.problemStatement}}</p>
+    <exam-editor trackChanges [appId]="appId" [examId]="examId" [questionId]="question._id" #editor></exam-editor>
+</div>
+<div class="centerContent">
+    <button mat-raised-button type="button" (click)="submitQuestion(editor)" color="primary">Next</button>
+</div>
+<!-- 
+<br>
+<hr>
+Visor<br>
+<progress-visor [snapshots]=progressArray></progress-visor>
+<br>
+<hr> -->
